@@ -2,16 +2,19 @@
  * This tests require a running instance of Unreal Engine with the RemoteExecution plugin enabled.
  */
 
-import { RemoteExecution, ECommandOutputType, RemoteExecutionConfig } from '../index';
+import {
+  ECommandOutputType,
+  RemoteExecution,
+  RemoteExecutionConfig,
+} from "../index";
 
 // These settings must match the settings in the Unreal Engine plugin, or the tests will fail.
-const LOCALHOST_IP = '127.0.0.1';
-const MULTICAST_ENDPOINT_IP = '239.0.0.1';
-const MULTICAST_ENDPOINT_PORT = 6766;
+const LOCALHOST_IP = "0.0.0.0";
+const MULTICAST_ENDPOINT_IP = "239.0.0.1";
+const MULTICAST_ENDPOINT_PORT = 6767;
 const COMMAND_ENDPOINT_PORT = 6776;
 
-
-describe('RemoteExecution', () => {
+describe("RemoteExecution", () => {
   let remoteExecution: RemoteExecution;
 
   beforeAll(async () => {
@@ -31,7 +34,7 @@ describe('RemoteExecution', () => {
     remoteExecution.stop();
   });
 
-  test('Hello World', async () => {
+  test("Hello World", async () => {
     const node = await remoteExecution.getFirstRemoteNode(1000, 2000);
 
     await remoteExecution.openCommandConnection(node);
@@ -42,11 +45,10 @@ describe('RemoteExecution', () => {
     expect(response.result).toBe("None");
 
     expect(response.output.length).toBe(1);
-  
+
     for (const output of response.output) {
       expect(output.type).toBe(ECommandOutputType.INFO);
-      expect(output.output).toBe('Hello World\r\n');
+      expect(output.output).toBe("Hello World\n");
     }
   });
-
 });
