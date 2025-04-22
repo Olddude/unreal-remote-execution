@@ -2,7 +2,7 @@ import { readFile } from "node:fs/promises";
 import { RemoteExecution } from "./src";
 
 async function main() {
-  const filePath = "/mnt/data/mcp-stuff/src/ue/__main__.py";
+  const filePath = "/mnt/data/mcp-stuff/src/ue/new_test.py";
   const fileContent = await readFile(filePath, "utf-8");
 
   const remoteExecution = new RemoteExecution({
