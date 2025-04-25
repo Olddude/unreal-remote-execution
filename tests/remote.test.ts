@@ -6,7 +6,7 @@ import {
   ECommandOutputType,
   RemoteExecution,
   RemoteExecutionConfig,
-} from "../index";
+} from "../src/remote";
 
 // These settings must match the settings in the Unreal Engine plugin, or the tests will fail.
 const LOCALHOST_IP = "0.0.0.0";
